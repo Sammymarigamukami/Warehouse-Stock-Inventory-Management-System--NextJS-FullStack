@@ -25,7 +25,8 @@
     "script:seed-demo-catalog": "tsx scripts/seed-demo-catalog.ts",
     "script:delete-all-suppliers": "tsx scripts/delete-all-suppliers.ts",
     "script:delete-all-categories": "tsx scripts/delete-all-categories.ts",
-    "script:delete-user": "tsx scripts/delete-user.ts"
+    "script:delete-user": "tsx scripts/delete-user.ts",
+    "script:generate-proposal-docx": "tsx scripts/generate-final-year-project-proposal.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -65,6 +66,7 @@
     "cmdk": "^1.0.0",
     "cookies": "^0.9.1",
     "date-fns": "^4.4.0",
+    "docx": "^9.13.0",
     "exceljs": "^4.4.0",
     "js-cookie": "^3.0.8",
     "jsonwebtoken": "^9.0.2",
