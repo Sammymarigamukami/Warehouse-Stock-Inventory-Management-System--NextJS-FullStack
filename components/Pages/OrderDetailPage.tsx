@@ -240,6 +240,7 @@ export default function OrderDetailPage({
 
   return (
     <Navbar>
+      <p> order details</p>
       <PageContentWrapper>
         <div className={APP_SHELL_DETAIL_CLASS}>
           <OrderDetailHeader
