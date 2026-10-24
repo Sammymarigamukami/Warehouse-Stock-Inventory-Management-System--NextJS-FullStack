@@ -17,5 +17,5 @@ export function orderHasFeeAdjustments(
   orderSubtotal: number,
   orderTotal: number,
 ): boolean {
-  return Math.abs(orderTotal - orderSubtotal) > 0.005;
+  return Math.abs(orderTotal - orderSubtotal) > 0.0005;
 }

@@ -200,7 +200,7 @@ export function createProductColumns(
     {
       accessorKey: "price",
       header: ({ column }) => <SortableHeader column={column} label="Price" />,
-      cell: ({ getValue }) => `$${getValue<number>().toFixed(2)}`,
+      cell: ({ getValue }) => `KES ${getValue<number>().toFixed(2)}`,
     },
     {
       // REQ-0139 — sort by createdAt; Created / Expire labels (full words, text-xs)

@@ -349,7 +349,7 @@ export function ProductLineItemsList({
                     ·
                   </span>
                   <span className={cn("text-xs", DETAIL_DATA_VALUE_CLASS)}>
-                    ${Number(item.price).toFixed(2)}
+                    KES {Number(item.price).toFixed(2)}
                   </span>
                 </p>
               </div>

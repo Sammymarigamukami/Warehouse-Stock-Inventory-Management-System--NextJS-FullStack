@@ -50,9 +50,9 @@ const STABLE_CURRENCY = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 2,
 });
 
-/** USD display — en-US locale; avoids de-DE hydration mismatches on admin dashboard. */
+/** KES display — en-US locale; avoids de-DE hydration mismatches on admin dashboard. */
 export function formatStableCurrency(value: number): string {
-  return `$${STABLE_CURRENCY.format(value)}`;
+  return `KES ${STABLE_CURRENCY.format(value)}`;
 }
 
 const STABLE_COMPACT_UTC = new Intl.DateTimeFormat("en-US", {

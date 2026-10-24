@@ -10,7 +10,7 @@ import { toDate } from "@/lib/date/format-stable";
 export function formatClientCurrency(value: number): string {
   return new Intl.NumberFormat(undefined, {
     style: "currency",
-    currency: "USD",
+    currency: "KES", 
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(value);
