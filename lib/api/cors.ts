@@ -9,7 +9,7 @@ import type { NextRequest } from "next/server";
 /**
  * Production URL
  */
-const PRODUCTION_URL = "warehouse-stock-inventory-managemen-beta.vercel.app";
+const PRODUCTION_URL = "https://stockly-inventowarehouse-stock-inventory-managemen-beta.vercel.app";
 
 /**
  * Check if an origin is allowed for CORS

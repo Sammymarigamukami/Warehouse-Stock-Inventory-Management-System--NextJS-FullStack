@@ -82,7 +82,7 @@ export const metadata = {
     other: [{ rel: "icon", url: "/favicon.ico" }],
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL ?? "warehouse-stock-inventory-managemen-beta.vercel.app",
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://stockly-inventowarehouse-stock-inventory-managemen-beta.vercel.app",
   ),
   openGraph: {
     type: "website",
