@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   AUTH_FORM_FIELD_EMERALD,
@@ -24,18 +24,20 @@ import {
 } from "@/components/auth/auth-animation";
 import { Sparkles } from "lucide-react";
 
-/**
- * Register page — split layout with promo cards + form.
- * REQ-0030 — shared AuthPageShell, stagger animations, max-w-7xl.
- */
 export default function RegisterPage() {
+  const [mounted, setMounted] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [role, setRole] = useState("user");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleGoogleSignUp = async () => {
     try {
@@ -51,7 +53,6 @@ export default function RegisterPage() {
     }
   };
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -70,6 +71,7 @@ export default function RegisterPage() {
       const response = await axiosInstance.post("/auth/register", {
         name,
         email,
+        role,
         password,
       });
 
@@ -81,6 +83,7 @@ export default function RegisterPage() {
 
         setName("");
         setEmail("");
+        setRole("user");
         setPassword("");
         setConfirmPassword("");
 
@@ -127,6 +130,7 @@ export default function RegisterPage() {
         </AuthAnimatedBlock>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Row 1: Name */}
           <AuthAnimatedBlock delayMs={formRowDelay(1)} className="space-y-2">
             <label
               htmlFor="name"
@@ -145,6 +149,7 @@ export default function RegisterPage() {
             />
           </AuthAnimatedBlock>
 
+          {/* Row 2: Email */}
           <AuthAnimatedBlock delayMs={formRowDelay(2)} className="space-y-2">
             <label
               htmlFor="email"
@@ -163,7 +168,44 @@ export default function RegisterPage() {
             />
           </AuthAnimatedBlock>
 
+          {/* Row 3: Role */}
           <AuthAnimatedBlock delayMs={formRowDelay(3)} className="space-y-2">
+            <label
+              htmlFor="role"
+              className="text-sm font-medium text-gray-700 dark:text-white/80"
+            >
+              Role
+            </label>
+            {mounted ? (
+              <select
+                id="role"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                required
+                className={cn(
+                  "w-full rounded-md border px-3 py-2 text-sm shadow-sm outline-none transition-colors",
+                  "bg-background text-foreground border-input focus:ring-1 focus:ring-emerald-500",
+                  AUTH_FORM_FIELD_EMERALD
+                )}
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+                <option value="supplier">Supplier</option>
+                <option value="client">Client</option>
+                <option value="retailer">Retailer</option>
+              </select>
+            ) : (
+              <div
+                className={cn(
+                  "w-full h-9 rounded-md border border-input bg-background",
+                  AUTH_FORM_FIELD_EMERALD
+                )}
+              />
+            )}
+          </AuthAnimatedBlock>
+
+          {/* Row 4: Password */}
+          <AuthAnimatedBlock delayMs={formRowDelay(4)} className="space-y-2">
             <label
               htmlFor="password"
               className="text-sm font-medium text-gray-700 dark:text-white/80"
@@ -181,7 +223,8 @@ export default function RegisterPage() {
             />
           </AuthAnimatedBlock>
 
-          <AuthAnimatedBlock delayMs={formRowDelay(4)} className="space-y-2">
+          {/* Row 5: Confirm Password */}
+          <AuthAnimatedBlock delayMs={formRowDelay(5)} className="space-y-2">
             <label
               htmlFor="confirmPassword"
               className="text-sm font-medium text-gray-700 dark:text-white/80"
@@ -199,12 +242,13 @@ export default function RegisterPage() {
             />
           </AuthAnimatedBlock>
 
-          <AuthAnimatedBlock delayMs={formRowDelay(5)}>
+          {/* Row 6: Submit Button */}
+          <AuthAnimatedBlock delayMs={formRowDelay(6)}>
             <Button
               type="submit"
               className={cn(
                 GLASS_BUTTON_ICON_HOVER,
-                AUTH_SUBMIT_BUTTON_EMERALD,
+                AUTH_SUBMIT_BUTTON_EMERALD
               )}
               disabled={isLoading}
             >
@@ -220,7 +264,8 @@ export default function RegisterPage() {
           </AuthAnimatedBlock>
         </form>
 
-        <AuthAnimatedBlock delayMs={formRowDelay(6)} className="relative">
+        {/* Row 7: Divider */}
+        <AuthAnimatedBlock delayMs={formRowDelay(7)} className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t border-emerald-400/20 dark:border-white/10" />
           </div>
@@ -231,7 +276,8 @@ export default function RegisterPage() {
           </div>
         </AuthAnimatedBlock>
 
-        <AuthAnimatedBlock delayMs={formRowDelay(7)}>
+        {/* Row 8: Google Button */}
+        <AuthAnimatedBlock delayMs={formRowDelay(8)}>
           <Button
             type="button"
             variant="outline"
@@ -265,8 +311,9 @@ export default function RegisterPage() {
           </Button>
         </AuthAnimatedBlock>
 
+        {/* Row 9: Footer Link */}
         <AuthAnimatedBlock
-          delayMs={formRowDelay(8)}
+          delayMs={formRowDelay(9)}
           className="text-center text-sm"
         >
           <p className="text-gray-600 dark:text-white/80">
